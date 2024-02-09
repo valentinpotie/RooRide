@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Carte Mapbox avec Itinéraire Routier</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    </style>
+</head>
+<body>
+<div id='map'></div>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoidmFsZW50aW5wb3RpZSIsImEiOiJjbG94Z2ZmaTIxZm50MktscTN2cm83cmU5In0.oCsWxs40GY2ZbtTFRz8GVA';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/valentinpotie/clr91yju2002x01pddwroh9im', // Votre style personnalisé
+        center: [151.057777, -33.846017],
+        zoom: 6
+    });
+
+    map.on('load', function() {
+        var start = [151.057777, -33.846017]; // Départ
+        var end = [150.750651, -23.145309];   // Arrivée
+
+        // Obtenir un itinéraire
+        var directionsRequest = 'https://api.mapbox.com/directions/v5/mapbox/driving/' + start.join(',') + ';' + end.join(',') + '?geometries=geojson&access_token=' + mapboxgl.accessToken;
+        
+        fetch(directionsRequest)
+            .then(response => response.json())
+            .then(data => {
+                var route = data.routes[0].geometry;
+                map.addSource('route', {
+                    type: 'geojson',
+                    data: {
+                        type: 'Feature',
+                        properties: {},
+                        geometry: route
+                    }
+                });
+
+                map.addLayer({
+                    id: 'route',
+                    type: 'line',
+                    source: 'route',
+                    layout: {
+                        'line-join': 'round',
+                        'line-cap': 'round'
+                    },
+                    paint: {
+                        'line-color': '#ff7e5f',
+                        'line-width': 4
+                    }
+                });
+            });
+    });
+</script>
+
+</body>
+</html>

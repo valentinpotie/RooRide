@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="mainWraper">
+        <div id="form">
+
+            <div id="logoDiv">
+                <img src="travel_mate_logo.png" alt="TravelMate logo" class="logo">
+                <div class="facebook-cta">
+                    <a href="https://www.facebook.com/groups/rideshareandcarpooling/" target="_blank">
+                        <span id="joinUs">Join us on</span>
+                    </a>
+                    <a href="https://www.facebook.com/groups/rideshareandcarpooling/" target="_blank">
+                        <img src="facebook_transparent_logo.png" alt="Facebook Group" class="facebook-logo" />
+                    </a>
+                </div>
+            </div>
+            
+            
+            <h1>RooRide - Trip Cost Simulator</h1>
+            <div class="distance box">
+                <p>Enter the distance of your trip (in Km):</p>
+                <input type="number" placeholder="ex: 50Km" min="1" id="distance" inputmode="numeric">
+            </div>
+            <div class="people box">
+                <p>Enter the number of people in the car (driver included):</p>
+                <input type="number" placeholder="ex: 3" min="1" max="9" id="people" inputmode="numeric" pattern="[0-9]*">
+            </div>
+            <div class="costEstimation" style="display: none;">
+                <p title="Help
+                Trip Cost Calculation Explained
+                Fuel Costs: Estimated from average fuel prices and standard fuel consumption rates.
+                Toll Charges: Based on average toll rates in Australia.
+                Maintenance: Includes average vehicle maintenance costs, pro-rated per kilometer.
+                Note: This is an estimation. Actual costs may vary.">Cost estimation per Km (in $ AUD):</p>
+                <input type="range" min="15" max="70" value="33" id="costPerKm"><span id="costDisplayed">0.3 $</span><br>
+            </div>
+
+            <div id="result">
+                <button onclick="calculate()">Simulate Costs</button>
+            </div>
+            <div>
+                <p id="resultSentence"></p>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script>
+        function calculate (){
+            let distance = document.getElementById("distance").value;
+            console.log(distance);
+            let people = document.getElementById("people").value;
+            console.log(people)
+            let costPerKm = document.getElementById("costPerKm").value;
+            console.log(costPerKm);
+            let result = document.getElementById("resultSentence");
+            if (distance === "" || people === "") { // Handle invalid input here, perhaps alert the user or show an error message
+            console.error("Invalid input");
+            result.innerHTML = "Please complete all fields ;)";
+            return; // Exit the function if the input is invalid
+            }
+            let costPerPerson = Math.round(distance * costPerKm / people /100); 
+            console.log(costPerPerson);
+            result.innerHTML = "→ Each passenger should give <b>" + costPerPerson + "$ </b> to the driver to divide the costs of the trip.";
+        }
+        let inputCost = document.getElementById("costPerKm");
+        let costDisplayed = document.getElementById("costDisplayed");
+
+        inputCost.addEventListener("input", function displayCost () {
+            costDisplayed.innerHTML = (this.value/100).toFixed(2) + " $";
+        })
+    </script>
+</body>
+</html>
