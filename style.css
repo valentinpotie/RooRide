@@ -39,6 +39,7 @@
     box-shadow: 0 2px 4px #8896c833;
     max-width: 700px;
     gap: 20px;
+    box-shadow: rgba(246, 117, 56, 0.4) 5px 5px, rgba(246, 117, 56, 0.3) 10px 10px, rgba(246, 117, 56, 0.2) 15px 15px, rgba(246, 117, 56, 0.1) 20px 20px, rgba(246, 117, 56, 0.05) 25px 25px;
 }
 
 h1 {
@@ -47,15 +48,27 @@ h1 {
 
 
 input {
-    border-radius: 8px;
-    padding: 0.4rem;
-    margin: 0.4rem;
-    width: 100%;
-    font-size: calc(.15rem + 1.7vh)
+  border-radius: 4px; /* Valeur unifiée */
+  padding: 4px 8px; /* Valeur unifiée */
+  margin: 0.4rem;
+  width: 100%;
+  font-size: 14px; /* Valeur ajustée pour la cohérence */
+  border: 0;
+  outline: 0;
+  color: rgb(60, 66, 87);
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgb(60 66 87 / 16%) 0px 0px 0px 1px; /* Simplifié pour clarté */
+  line-height: 20px;
+  font-weight: 400;
+  min-height: 28px;
+  vertical-align: middle;
+  transition: background-color .24s ease, box-shadow .24s ease; /* Simplifié */
 }
+
 
 #result {
     width: 100%;
+    min-width: 300px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -71,6 +84,8 @@ button {
     font-size: calc(.15rem + 1.7vh);
     color: #ffffff;
     border-color: #546a7b;
+
+    
 }
 
 .box {
@@ -122,4 +137,64 @@ button {
   #joinUs {
       display: none;
   }
+  
 }
+
+@media only screen and (max-width: 500px) {
+  #result {
+  align-items: flex-start;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .facebook-logo {
+      display: none;
+  }
+}
+
+.button-30 {
+  align-items: center;
+  appearance: none;
+  background-color: #FCFCFD;
+  border-radius: 30px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #36395A;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 35px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 14px;
+  min-width: 40px;
+}
+
+.button-30:focus {
+  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.button-30:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-30:active {
+  box-shadow: #D6D6E7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
