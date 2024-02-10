@@ -62,7 +62,7 @@ input {
 }
 
 button {
-    border-radius: 8px;
+    border-radius: 30px;
     padding: 0.4rem;
     margin: 0.4rem;
     width: 50%;
@@ -70,6 +70,7 @@ button {
     background-image: linear-gradient();
     font-size: calc(.15rem + 1.7vh);
     color: #ffffff;
+    border-color: #546a7b;
 }
 
 .box {
