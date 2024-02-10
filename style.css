@@ -11,7 +11,7 @@
     background-color:aliceblue;
     font-family: Raleway,sans-serif;
     text-align: center;
-    color: rgba(246,237,222,255);
+    color: #ffffff;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -32,9 +32,9 @@
     display: flex;
     flex-direction: column;
     align-items: baseline;
-    background-color: rgba(226,79,42,255);
+    background-color: #f67538;
     border-radius: 8px;
-    border-top: 4px solid #3b8075;
+    border-top: 4px solid #546a7b;
     padding: 24px 32px;
     box-shadow: 0 2px 4px #8896c833;
     max-width: 700px;
@@ -66,10 +66,10 @@ button {
     padding: 0.4rem;
     margin: 0.4rem;
     width: 50%;
-    background-color: rgba(59,128,117,255);
+    background-color: #546a7b;
     background-image: linear-gradient();
     font-size: calc(.15rem + 1.7vh);
-    color: rgba(246,237,222,255);
+    color: #ffffff;
 }
 
 .box {
@@ -82,8 +82,8 @@ button {
 }
 
 .logo {
-  height: 60px;
-  width: 60px;
+  height: 80px;
+  width: 120px;
 }
 
 .facebook-cta {
@@ -113,7 +113,7 @@ button {
 }
 
 #joinUs {
-  color: rgba(246,237,222,255);
+  color: #ffffff;
   text-decoration: underline;
 }
 

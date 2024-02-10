@@ -12,7 +12,7 @@
         <div id="form">
 
             <div id="logoDiv">
-                <img src="travel_mate_logo.png" alt="TravelMate logo" class="logo">
+                <img src="rooRideLogo.svg" alt="RooRide logo" class="logo">
                 <div class="facebook-cta">
                     <a href="https://www.facebook.com/groups/rideshareandcarpooling/" target="_blank">
                         <span id="joinUs">Join us on</span>
@@ -24,7 +24,7 @@
             </div>
             
             
-            <h1>RooRide - Trip Cost Simulator</h1>
+            <h1>Trip Cost Simulator</h1>
             <div class="distance box">
                 <p>Enter the distance of your trip (in Km):</p>
                 <input type="number" placeholder="ex: 50Km" min="1" id="distance" inputmode="numeric">
@@ -69,7 +69,7 @@
             }
             let costPerPerson = Math.round(distance * costPerKm / people /100); 
             console.log(costPerPerson);
-            result.innerHTML = "→ Each passenger should give <b>" + costPerPerson + "$ </b> to the driver to divide the costs of the trip.";
+            result.innerHTML = "→ Each passenger should give <b>$" + costPerPerson + " </b> to the driver to divide the costs of the trip.";
         }
         let inputCost = document.getElementById("costPerKm");
         let costDisplayed = document.getElementById("costDisplayed");
