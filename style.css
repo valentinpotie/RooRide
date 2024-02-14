@@ -9,7 +9,7 @@
   
   body {
     background-color:aliceblue;
-    font-family: Raleway,sans-serif;
+    font-family: avenir;
     text-align: center;
     color: #ffffff;
     display: flex;
@@ -43,6 +43,7 @@
 }
 
 h1 {
+    width: 100%;
     text-align: center;   
 }
 
@@ -98,8 +99,7 @@ button {
 }
 
 .logo {
-  height: 80px;
-  width: 120px;
+  height: 120px;
 }
 
 .facebook-cta {
@@ -163,7 +163,7 @@ button {
   color: #36395A;
   cursor: pointer;
   display: inline-flex;
-  font-family: "JetBrains Mono",monospace;
+  font-family: avenir;
   height: 35px;
   justify-content: center;
   line-height: 1;
