@@ -16,26 +16,11 @@
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCx1nNXBBz-Eb2qiK66UbilM1rezpYagBo"></script>
     <script>
-        function setMapUrl(origin, destination, apiKey) {
-            const mapIframe = document.getElementById('map');
-            const baseUrl = 'https://www.google.com/maps/embed/v1/directions';
-            const url = `${baseUrl}?key=${apiKey}&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}`;
-            mapIframe.src = url;
-        }
-
-        // Lire les paramètres de l'URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const origin = urlParams.get('origin');
-        const destination = urlParams.get('destination');
-        const apiKey = 'AIzaSyCx1nNXBBz-Eb2qiK66UbilM1rezpYagBo'; // Remplacez par votre clé API
-
-        if (origin && destination) {
-            setMapUrl(origin, destination, apiKey);
-        } else {
-            console.error('Missing origin or destination parameters.');
-        }
-
         function initMap() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const origin = urlParams.get('origin');
+            const destination = urlParams.get('destination');
+            
             const mapOptions = {
                 center: { lat: -33.8688, lng: 151.2093 },
                 zoom: 10,
@@ -44,110 +29,103 @@
                         "featureType": "landscape",
                         "elementType": "geometry.fill",
                         "stylers": [
-                            {
-                                "color": "#f5f5f5"
-                            }
+                            { "color": "#f5f5f5" }
                         ]
                     },
                     {
                         "featureType": "landscape.natural",
                         "elementType": "geometry.fill",
                         "stylers": [
-                            {
-                                "visibility": "off"
-                            },
-                            {
-                                "color": "#ba4242"
-                            }
+                            { "visibility": "off" },
+                            { "color": "#ba4242" }
                         ]
                     },
                     {
                         "featureType": "landscape.natural",
                         "elementType": "labels.text.fill",
                         "stylers": [
-                            {
-                                "visibility": "off"
-                            }
+                            { "visibility": "off" }
                         ]
                     },
                     {
                         "featureType": "poi",
                         "elementType": "geometry.fill",
                         "stylers": [
-                            {
-                                "visibility": "on"
-                            },
-                            {
-                                "color": "#dfe2e6"
-                            }
+                            { "visibility": "on" },
+                            { "color": "#dfe2e6" }
                         ]
                     },
                     {
                         "featureType": "poi",
                         "elementType": "labels.text.fill",
                         "stylers": [
-                            {
-                                "color": "#5a5a5a"
-                            }
+                            { "color": "#5a5a5a" }
                         ]
                     },
                     {
                         "featureType": "road",
                         "elementType": "geometry",
                         "stylers": [
-                            {
-                                "lightness": 100
-                            },
-                            {
-                                "visibility": "simplified"
-                            }
+                            { "lightness": 100 },
+                            { "visibility": "simplified" }
                         ]
                     },
                     {
                         "featureType": "road",
                         "elementType": "labels",
                         "stylers": [
-                            {
-                                "visibility": "off"
-                            }
+                            { "visibility": "off" }
                         ]
                     },
                     {
                         "featureType": "road.highway",
                         "elementType": "geometry",
                         "stylers": [
-                            {
-                                "visibility": "on"
-                            },
-                            {
-                                "color": "#c77a3b"
-                            }
+                            { "visibility": "on" },
+                            { "color": "#c77a3b" }
                         ]
                     },
                     {
                         "featureType": "transit.line",
                         "elementType": "geometry",
                         "stylers": [
-                            {
-                                "visibility": "on"
-                            },
-                            {
-                                "lightness": 700
-                            }
+                            { "visibility": "on" },
+                            { "lightness": 700 }
                         ]
                     },
                     {
                         "featureType": "water",
                         "elementType": "all",
                         "stylers": [
-                            {
-                                "color": "#8a969f"
-                            }
+                            { "color": "#8a969f" }
                         ]
                     }
                 ]
             };
             const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+            const directionsService = new google.maps.DirectionsService();
+            const directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+
+            if (origin && destination) {
+                directionsService.route(
+                    {
+                        origin: origin,
+                        destination: destination,
+                        travelMode: 'DRIVING'
+                    },
+                    (response, status) => {
+                        if (status === 'OK') {
+                            directionsRenderer.setDirections(response);
+                        } else {
+                            console.error('Directions request failed due to ' + status);
+                        }
+                    }
+                );
+            } else {
+                console.error('Missing origin or destination parameters.');
+            }
         }
 
         window.onload = initMap;
