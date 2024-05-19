@@ -18,10 +18,10 @@
 <body>
     <iframe id="map" src="" allowfullscreen></iframe>
     <script>
-        function setMapUrl(origin, destination, apiKey, styleId) {
+        function setMapUrl(origin, destination, apiKey) {
             const mapIframe = document.getElementById('map');
             const baseUrl = 'https://www.google.com/maps/embed/v1/directions';
-            const url = `${baseUrl}?key=${apiKey}&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&map_id=${styleId}`;
+            const url = `${baseUrl}?key=${apiKey}&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}`;
             mapIframe.src = url;
         }
 
@@ -30,10 +30,9 @@
         const origin = urlParams.get('origin');
         const destination = urlParams.get('destination');
         const apiKey = 'AIzaSyCx1nNXBBz-Eb2qiK66UbilM1rezpYagBo'; // Remplacez par votre clé API
-        const styleId = 'fe2eccfd2fcdf824'; // Votre ID de style de carte
 
         if (origin && destination) {
-            setMapUrl(origin, destination, apiKey, styleId);
+            setMapUrl(origin, destination, apiKey);
         } else {
             console.error('Missing origin or destination parameters.');
         }
