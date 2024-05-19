@@ -14,9 +14,7 @@
             border: 0;
         }
     </style>
-</head>
-<body>
-    <iframe id="map" src="" allowfullscreen></iframe>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
     <script>
         function setMapUrl(origin, destination, apiKey) {
             const mapIframe = document.getElementById('map');
@@ -36,6 +34,126 @@
         } else {
             console.error('Missing origin or destination parameters.');
         }
+
+        function initMap() {
+            const mapOptions = {
+                center: { lat: -33.8688, lng: 151.2093 },
+                zoom: 10,
+                styles: [
+                    {
+                        "featureType": "landscape",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "#f5f5f5"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape.natural",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            },
+                            {
+                                "color": "#ba4242"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape.natural",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "visibility": "on"
+                            },
+                            {
+                                "color": "#dfe2e6"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "color": "#5a5a5a"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "lightness": 100
+                            },
+                            {
+                                "visibility": "simplified"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "visibility": "on"
+                            },
+                            {
+                                "color": "#c77a3b"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "transit.line",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "visibility": "on"
+                            },
+                            {
+                                "lightness": 700
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "color": "#8a969f"
+                            }
+                        ]
+                    }
+                ]
+            };
+            const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        }
+
+        window.onload = initMap;
     </script>
+</head>
+<body>
+    <div id="map"></div>
 </body>
 </html>
